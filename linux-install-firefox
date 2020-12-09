@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# START
+set -e
+
+## UNINSTALL
+# Remove binaries
+rm -rf /opt/firefox/ /usr/bin/firefox
+
+# DOWNLOAD
+curl -L -o firefox.tar.bz2 https://download.mozilla.org/\?product\=firefox-standard-latest-ssl\&os\=linux64\&lang\=en-US
+
+# EXTRACT
+tar -xf firefox.tar.bz2
+rm -rf firefox.tar.bz2
+
+# INSTALL
+sudo mv firefox /opt
+sudo ln -s /opt/firefox/firefox /usr/bin/firefox
+
+# DESKTOP INTEGRATION
+# Gnome Shell
+echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Firefox\nComment=Firefox\nExec=/opt/firefox/firefox %u\nTerminal=false\nIcon=/opt/firefox/browser/chrome/icons/default/default128.png\nStartupWMClass=Firefox\nType=Application\nCategories=Network;WebBrowser;\nMimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;\nStartupNotify=true\n" > /usr/share/applications/firefox.desktop
+
+# NOTIFY
+echo "Installed!"
