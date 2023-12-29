@@ -8,7 +8,7 @@ set -e
 sudo rm -rf /opt/firefox/ /usr/bin/firefox
 
 # DOWNLOAD
-curl -L -o firefox.tar.bz2 https://download.mozilla.org/?product=firefox-latest&os=linux
+curl -L -o firefox.tar.bz2 https://download.mozilla.org/?product=firefox-latest&os=linux64
 
 # EXTRACT
 tar -xf firefox.tar.bz2
